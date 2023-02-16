@@ -1,0 +1,12 @@
+tensorflow
+numpy
+keras
+scipy
+Pillow
+imageio
+python-osc
+librosa
+keyboard
+onnxruntime
+tf2onnx
+onnx
