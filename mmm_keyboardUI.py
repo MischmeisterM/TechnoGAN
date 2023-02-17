@@ -1,3 +1,9 @@
+# implements keyboard shortcuts during training
+# ctrl+shift+s - save training progress after current epoch is finished
+# ctrl+shift+p - pause/resume training without halting the script
+#
+# BUG: for some reason, occasionally python is unable to regain focus, so keybard interaction stops working
+
 import keyboard
 
 

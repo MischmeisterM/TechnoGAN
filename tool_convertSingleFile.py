@@ -1,3 +1,9 @@
+# convert a single wave to spectrum image and reconvert to wave
+# to test if transformation and retransformation work - the resulting wave should
+# sound like the source as much as possible
+# the same functions and params should then be used when
+# creating images for the dataset and generating wavs through inference
+
 import mmm_WaveToolbox as wtb
 import os
 

@@ -1,3 +1,5 @@
+# helper script that takes a directory of .wav files and slices each file into individual samples
+
 import mmm_WaveToolbox as wtb
 import os
 

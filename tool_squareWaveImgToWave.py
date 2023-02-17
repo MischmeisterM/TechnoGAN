@@ -1,3 +1,6 @@
+# old conversion script
+# TODO: check if this can be deleted
+
 import mmm_WaveToolbox as wtb
 
 

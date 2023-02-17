@@ -1,16 +1,19 @@
+# OSC Interface
+# recieves OSC messages from the UI application,
+# forwards generation parameters to generator wrapper,
+# returns response from generator (generated file location) to UI app
+
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import ThreadingOSCUDPServer
 from pythonosc import udp_client
 from threading import Thread
 from time import sleep
 
-print("TechnoGAN starting up - this might take a few seconds...")
-
 import mmm_ganGenerator as gg
 
-# from controller_client import ControllerClient
-# from data import sounds
+print("TechnoGAN starting up - this might take a few seconds...")
 
+# osc prefixes for messages to and from the generator server
 CMD_PREFIX = "/gg/"
 RETURN_PREFIX = "/ggret/"
 

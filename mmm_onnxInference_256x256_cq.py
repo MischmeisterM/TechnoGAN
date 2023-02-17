@@ -1,11 +1,15 @@
-print("Starting TechnoGAN generator server...")
+# generates audio and sprectrum image (runs inference) from trained model converted to .onnx
+# for model trained on 256x256 px constant-q spectrograms
+
+# for more comments on functionality refer to mmm_onnxInference_128x256.py
 
 import numpy as np
 import time
-#from PIL import Image, ImageDraw
 from PIL import Image
 import mmm_WaveToolbox as wtb
 import onnxruntime as ort
+
+print("Starting TechnoGAN generator server...")
 
 GENERATORSAVELOCATION = "data/generator_256x256_cq2.onnx"
 print("Loading generator model: " + GENERATORSAVELOCATION)
@@ -15,6 +19,9 @@ IMG_WIDTH = 256
 IMG_HEIGHT = 256
 #PREVIEWSCALE = 2
 OUTPUT_SR = 44100
+
+# number of frequency bins and starting frequency
+# should reflect the numbers of the used training data
 CQ_BINS = 24
 CQ_BASE = 8.175
 
@@ -35,9 +42,6 @@ def generate(seed):
 # for some reason the first generation always takes a bit longer...
 def generate_init_dummy(seedlength):
     dummyseed = np.zeros(seedlength)
-    #tensorseed = np.zeros((1, len(dummyseed)), dtype='float32')
-    #tensorseed[0, :] = tf.convert_to_tensor(dummyseed)
-    #tensorseed = tensorseed * 3 / 128.
     src_spect = generate(dummyseed)
 
 
@@ -127,12 +131,6 @@ def generate_pingpong(startseed, endseed, steps):
     print(f'time: {timestring}')
     return destwave, timestring
 
-
-# def load_checkpoint():
-#     print("Not loading trained model data...")
-#     # cp = checkpoint.restore(tf.train.latest_checkpoint(SAVEPOINTDIR))
-#     # generator = keras.models.load_model("\\temp\\generator_128x256")
-#     wtb.SPECTRUMRESCALE = 160
 
 def init_generator():
     print("Initializing generator...")

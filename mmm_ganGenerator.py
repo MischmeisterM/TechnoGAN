@@ -1,14 +1,18 @@
+# wrapper for communication with osc-server and different generator models
+
 from scipy.io import wavfile
 import numpy as np
 import os
 import tempfile
 
-# IMPORT THE NETWORK-TYPE HERE ###############################################
+# IMPORT THE NETWORK HERE ####################################################
 import mmm_onnxInference_512x256 as gan
-#import GAN_Wave1D_128bpm as gan
+# use training scripts like GAN_SPECT_128x256 to run inference directly with tensorflow models
 ##############################################################################
 
-
+# create temp dir on default os temp folder
+# this will store generated files
+# TODO: delete files on quit (not too much space is used and generated files overwrite each other, but would be cleaner)
 TARGET_DIR = tempfile.gettempdir() + "\\TechnoGAN\\"
 os.makedirs(TARGET_DIR, exist_ok=True)
 TARGET_DIR = TARGET_DIR.replace("\\", "/")

@@ -1,4 +1,6 @@
-# Print iterations progress
+# Print iterations progress bar to console
+# https://stackoverflow.com/a/34325723/20275036
+
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = ""):
     """
     Call in a loop to create terminal progress bar
