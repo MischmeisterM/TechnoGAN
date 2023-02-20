@@ -10,3 +10,6 @@ keyboard
 onnxruntime
 tf2onnx
 onnx
+cx_Freeze
+wxwidgets
+pywin32

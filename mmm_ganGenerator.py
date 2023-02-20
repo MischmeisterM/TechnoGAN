@@ -15,7 +15,10 @@ import mmm_onnxInference_512x256 as gan
 # TODO: delete files on quit (not too much space is used and generated files overwrite each other, but would be cleaner)
 TARGET_DIR = tempfile.gettempdir() + "\\TechnoGAN\\"
 os.makedirs(TARGET_DIR, exist_ok=True)
+
+# Remove the following line when freezing on Mac
 TARGET_DIR = TARGET_DIR.replace("\\", "/")
+
 print("Temp directory set to ", TARGET_DIR)
 TARGET_SR = 22000
 
