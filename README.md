@@ -14,6 +14,7 @@ The next steps in developing the project further require extensive experience an
 * full Max 4 Live performance interface: https://www.youtube.com/watch?v=YGJx9dgsVYM
 
 Project webpage: https://www.mischmeisterm.com/projects/technogan/
+
 For questions, comments, requests: mischa@mischmeisterm.com
 
 ---
