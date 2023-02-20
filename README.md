@@ -14,6 +14,7 @@ The next steps in developing the project further require extensive experience an
 * full Max 4 Live performance interface: https://www.youtube.com/watch?v=YGJx9dgsVYM
 
 Project webpage: https://www.mischmeisterm.com/projects/technogan/
+For questions, comments, requests: mischa@mischmeisterm.com
 
 ---
 ## Basic structure
@@ -32,11 +33,11 @@ See the project webpage for downloads: https://www.mischmeisterm.com/projects/te
 ### GAN Model
 The root for the Network model and script is a rather basic Tensorflow tutorial. (https://www.tensorflow.org/tutorials/generative/dcgan)
 
-For different input formats (depending on sample-length of training data and transformation paramteers), there is a script that handles network shapes and training. The script is also able to be used for inference later. During training, the script also continuously generates inference samples to document and monitor progress.
+For each different input format (pixel size of training dataset), a script handles network shapes and training. The script is also able to be used for inference later. During training, the script also continuously generates inference samples to document and monitor progress.
 
 The Generator network starts with a seed aray of 64 values. This (rather arbitrary amount) could be modified but the change would also be made in the OSC-interface and its connected client applications.
 
-There are several models for different pixel sizes included. Also one that works on spectrograms created with a constant-q transformation. 
+There are several models for different pixel sizes included. Also an experimental one that works on spectrograms created with a constant-q transformation. 
 
 #### How to create your own Model:
 * Copy one of the existing model scripts `GAN_Spect_*.py`.
@@ -88,7 +89,7 @@ Responses are always prefixed with `/ccret`.
 ### Step-by-Step guide to create your own set of training data:
 1. Curate audiofiles that you would like in your training set:
    * Songs should be roughly in the same tempo (and genre maybe, but that's up to you).
-   * Rhythmic sounds work best. Melodies and tonal structures don't train well with the current models. 
+   * Rhythmic and atonal sounds work best. Melodies and tonal structures don't transform and train well with the current models. 
    * Think about the implications of using possibly copyrighted material in your datasets.
 
 2. Conform tracks to same tempo
@@ -97,6 +98,7 @@ Responses are always prefixed with `/ccret`.
 
 3. Slice tracks into same-length samples
    * you can use `tool_sliceSongToWaves.py` for that. Make sure to give it the right BPM in the parameters.
+   * for the model I trained, I used about 5500 single samples - more should be better. 
 
 4. transform wave-slices to greyscale images
    * use one of the scripts in `tool_slicesToDatasets.py`
