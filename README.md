@@ -17,7 +17,8 @@ Project webpage: https://www.mischmeisterm.com/projects/technogan/
 For questions, comments, requests: mischa@mischmeisterm.com
 
 ---
-## Basic structure
+## Project structure
+### Basic structure
 While the original input and final output is audio data, The heart of TechnoGAN is a Generative Adversarial Network that works on grayscale images.
 
 Audio samples are transformed into spectrograms that serve as training data. Vice versa, Spectrograms are created from the Network and then transformed back into 1-dimensional waveforms.
@@ -29,6 +30,16 @@ Tensorflow in connection with CUDA is used For training the model. For inference
 There also is an OSC-interface for actually jamming, composing and performing with the trained model and several Max and Max for Live applications that offer a graphical interface and some mixing and arrangement tools.
 See the project webpage for downloads: https://www.mischmeisterm.com/projects/technogan/
 
+---
+### TL:DR
+* Training the model: 
+  * Run any of the `GAN_Spect_*.py` scripts or create your own.
+  * Make sure to point the path variables in there to the correct locations.
+* Running Inference via OSC:
+  * Run `mmm_liveOSCServer`.
+    * -> imports `mmm_ganGenerator.py`
+      * -> imports the inference script (the `GAN_Spect_*.py` used to train or the 'mmm_onnxInference_*.py that points to the right model')
+      
 ---
 ### GAN Model
 The root for the Network model and script is a rather basic Tensorflow tutorial. (https://www.tensorflow.org/tutorials/generative/dcgan)
