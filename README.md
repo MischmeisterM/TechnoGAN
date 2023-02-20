@@ -39,7 +39,7 @@ See the project webpage for downloads: https://www.mischmeisterm.com/projects/te
 * Running Inference via OSC:
   * Run `mmm_liveOSCServer`.
     * -> imports `mmm_ganGenerator.py`
-      * -> imports the inference script (the `GAN_Spect_*.py` used to train or the 'mmm_onnxInference_*.py that points to the right model')
+      * -> imports the inference script (the `GAN_Spect_*.py` used to train or the `mmm_onnxInference_*.py` that points to the right model')
       
 ---
 ### GAN Model
