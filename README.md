@@ -1,4 +1,5 @@
 # TechnoGAN
+
 ## Introduction
 TechnoGAN is a Neural Network that generates short loopable techno-like samples. 
 
@@ -7,8 +8,12 @@ The project was initially part of my master thesis while studying composition wi
 While I have some programming background, I am all but a professional coder, thus I'm sure the code is in many ways terribly written, badly documented and not conforming to any standards. I apologize for that, but as i actually just learned python in the course of this project, I think i got quite some way so far. 
 The next steps in developing the project further require extensive experience and knowledge in software development and algorythms that I simply don't have the capacity to aquire all on my own.
 
+#### Listen / Demo Videos:
+* 'smol' standalone interface version: https://www.youtube.com/watch?v=YlCn5rSRvO8
+* Max 4 Live sampler interface: https://www.youtube.com/watch?v=-VWpd4WY7DQ
+* full Max 4 Live performance interface: https://www.youtube.com/watch?v=YGJx9dgsVYM
 
-
+---
 ## Basic structure
 While the original input and final output is audio data, The heart of TechnoGAN is a Generative Adversarial Network that works on grayscale images.
 
@@ -21,7 +26,7 @@ Tensorflow in connection with CUDA is used For training the model. For inference
 There also is an OSC-interface for actually jamming, composing and performing with the trained model and several Max and Max for Live applications that offer a graphical interface and some mixing and arrangement tools.
 See the project webpage for downloads: https://www.mischmeisterm.com/projects/technogan/
 
-
+---
 ### GAN Model
 The root for the Network model and script is a rather basic Tensorflow tutorial. (https://www.tensorflow.org/tutorials/generative/dcgan)
 
@@ -40,6 +45,7 @@ There are several models for different pixel sizes included. Also one that works
 After finishing training you can convert the model into .onnx format with `convert_tf2onnx.py`.
 Make sure you also copy and adapt one of the `mmm_onnxInference*.py` scripts to run inference on the converted .onnx model (mainly IMG_WIDTH and IMG_HEIGHT).
 
+---
 ### Inference interface
 `mmm_liveOSCServer.py` starts a process that listens to OSC messages on 10102 and sends responses to 127.0.0.1:10101.
 
@@ -70,15 +76,18 @@ Responses are always prefixed with `/ccret`.
 * `/ccret/wav_id_img <int id> <string wavfile> <string imagefile> <string dbgmess>` id and file locations of sample requested with `..._wav_image_id` commands (and an additional message string for debug).
 
 
-
+---
 ## How to prepare a training dataset:
+
 ### tools for dataset creation
 `tool_*.py` contain a few handy scripts to convert audiofiles into processable datasets.
 
+---
 ### Step-by-Step guide to create your own set of training data:
 1. Curate audiofiles that you would like in your training set:
    * Songs should be roughly in the same tempo (and genre maybe, but that's up to you).
    * Rhythmic sounds work best. Melodies and tonal structures don't train well with the current models. 
+   * Think about the implications of using possibly copyrighted material in your datasets.
 
 2. Conform tracks to same tempo
    * use your DAW of choice to conform the tracks to exactly the same tempo
@@ -92,7 +101,7 @@ Responses are always prefixed with `/ccret`.
    * check converting and reconverint a single file to see if it works
    * if you fiddle with the parameters, make sure that the image dimensions conform to your training model.
    
-
+---
 ## How to train the model:
 When a model script is run as the main process, the model is trained. After a few iterations example waveforms and images are created to monitor progress. Every few iterations the model is saved and training progress is saved in a checkpoint. When the script is restarted, training resumes from the last checkpoint.
 
@@ -112,7 +121,7 @@ tensorflow 2.10.0 (tensorflow python package)
 CUDA v11.7
 cudaNN 11.3
 
-
+---
 ## How to use a trained model:
 After training, you can convert the model to the ONNX file format that is a bit easier to handle and doesn't require the bulky tensorflow library (requires OnnxRuntime instead).
 
@@ -125,7 +134,7 @@ After training, you can convert the model to the ONNX file format that is a bit 
    - reference (import) the new inference script in `mmm_ganGenerator.py`
 3. run `mmm_liveOSCServer.py`
 
-
+---
 ### Freezing the generator app:
 By freezing the generator app you can create a standalone application that should run on any machine without needing to install anything else.
 
@@ -145,6 +154,7 @@ For now, the main script for Mac is 'mmm_ganGenerator.py', there is no proper wr
 **After freezing, you have to manually copy** the '\_soundfile_data' folder into your builds \lib folder (most likely found in '\venv\Lib\site-packages\_soundfile_data'). 
 Not sure why cx-freeze doesn't catch this one, and I'm pretty sure there is a prettier solution for this.  
 
+---
 ## TODOs and next steps
 ### freezing and codesigning server app for Mac/M1
 While I somehow managed to generate a running freeze of the generator app on Mac, there are still a lot of issues:
@@ -159,4 +169,4 @@ In the long run, the generator app should go away alltogether and be integrated 
 ### refactor hacky code and approximated transformations
 If you have read this far, you've probably figured out that I'm not a professional programmer. Much of the code used in this project looks that way because after some experimentation I got it to do what I needed it to do and not because it is the way such things should usually be done.
 * Many processes are crude aproximations and might not be mathimatically or scientifically correct.
-* Many things could surely be done in a more performat or clear way.
+* Many things could surely be done in a more performant or clear way.
