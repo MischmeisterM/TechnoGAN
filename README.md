@@ -180,7 +180,7 @@ While I somehow managed to generate a running freeze of the generator app on Mac
 
 ### creating a max external for inference
 In the long run, the generator app should go away alltogether and be integrated in the interface app (i.e. Max 4 live Plugin or VST). So far I have tried to create a Max external with Max's min devkit (http://cycling74.github.io/min-devkit/
-) and use the OnnxRuntime c++ library to run inference there. Sadly I couldn't get to run both things together (I didn't get around to learn cmake yet). Another major issue with this goal is, that the Griffin-Lim algorythm from librosa would need to be re-implemented entirely in c++.
+) and use the OnnxRuntime c++ library to run inference there. Sadly I couldn't get to run both things together (I didn't get around to learn cmake yet). Another major issue with this goal is, that the Griffin-Lim algorythm from librosa would need to be re-implemented entirely in c++, or find another way to reconstruct missing phase info alltogether.
 
 ### refactor hacky code and approximated transformations
 If you have read this far, you've probably figured out that I'm not a professional programmer. Much of the code used in this project looks that way because after some experimentation I got it to do what I needed it to do and not because it is the way such things should usually be done.
