@@ -108,7 +108,7 @@ BUFFER_SIZE = 3346
 # if running out of v-ram during startup, try a smaller batch-size
 BATCH_SIZE = 24
 
-# number of seed-values (size of first generator layer)
+# number of seed-values (input-size of first generator layer)
 noise_dim = 64
 
 # number of preview images/wavs per example step
@@ -168,6 +168,7 @@ def make_discriminator_model():
     print('Building discriminator model:')
     model = tf.keras.Sequential()
     model.add(layers.Conv2D(64, FILTER5, strides=(2, 2), padding='same', input_shape=[256, 256, 1]))
+    print(model.output_shape)
     model.add(layers.LeakyReLU())
     model.add(layers.Dropout(0.3))
     print(model.output_shape)

@@ -10,6 +10,6 @@ dest_wav_dir = "D:/work/2022/TechnoGAN/networks/Source/2022_160bpm/slices_160bpm
 for file in os.listdir(src_dir):
     if file.endswith(".wav"):
         src_filename = os.path.splitext(file)[0]
-        #wtb.slice_wave_and_save(src_dir + src_filename, dest_wav_dir + src_filename, 32000, 1)
+        # slice_wave_and_save(<sourcefile>, <destinationfile>, <BPM>, jump = <store only every Nth slice> beats = <beats per slice>)
         wtb.slice_wave_and_save(src_dir + src_filename, dest_wav_dir + src_filename, 160, beats=4)
 
