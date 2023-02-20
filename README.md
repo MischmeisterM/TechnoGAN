@@ -13,6 +13,8 @@ The next steps in developing the project further require extensive experience an
 * Max 4 Live sampler interface: https://www.youtube.com/watch?v=-VWpd4WY7DQ
 * full Max 4 Live performance interface: https://www.youtube.com/watch?v=YGJx9dgsVYM
 
+Project webpage: https://www.mischmeisterm.com/projects/technogan/
+
 ---
 ## Basic structure
 While the original input and final output is audio data, The heart of TechnoGAN is a Generative Adversarial Network that works on grayscale images.
