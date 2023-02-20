@@ -10,7 +10,7 @@ import onnxruntime as ort
 print("Starting TechnoGAN generator server...")
 
 # location of generator model
-GENERATORSAVELOCATION = "data/model22.onnx"
+GENERATORSAVELOCATION = "data/TechnoGAN_128x256.onnx"
 print("Loading generator model: " + GENERATORSAVELOCATION)
 sess = ort.InferenceSession(GENERATORSAVELOCATION, providers=["CPUExecutionProvider"])
 

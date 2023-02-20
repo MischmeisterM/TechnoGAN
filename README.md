@@ -40,7 +40,28 @@ See the project webpage for downloads: https://www.mischmeisterm.com/projects/te
   * Run `mmm_liveOSCServer`.
     * -> imports `mmm_ganGenerator.py`
       * -> imports the inference script (the `GAN_Spect_*.py` used to train or the `mmm_onnxInference_*.py` that points to the right model')
-      
+
+---
+### File contents
+* `/data` contains some trained models in .onnx format
+* `compare_tf2onnx.py` compare a tensorflow model with a converted .onnx model to assert correct conversion.
+* `convert_tf2onnx.py` convert tensorflow model to .onnx file.
+* `GAN_Spect_*.py` create GAN model according to given layer structure and train model.
+* `icon.png` icon to use for Mac server application.
+* `mmm_consoleToolbox.py` scripts for fancy console outputs (progress bar).
+* `mmm_ganGenerator.py` implements incoming OSC commands (importet by `liveOSCServer.py`) and calls inference operations (imports one of `GAN_Spect_*.py` or `mmm_onnxInference_*.py`)
+* `mmm_keyboardUI.py` additional scripts that handle keyboard interaction.
+* `mmm_liveOSCServer.py` runs an OSC server that communicates with GUI-apps (i.e. Max 4 Live).
+* `mmm_onnxInference_*.py` runs inference on trained and converted model.
+* `mmm_WaveToolbox.py` several functions to transform audio samples to spectrogram images and back.
+* `requirements.txt` lists required python packages.
+* `setup_cx_*.py` scripts to create standalone apps of the generator with cx_freeze 
+* `TechnoGAN.ico` icon to use for Win server application.
+* `tool_*.py` scripts to help in slicing and converting audio files to training image data.
+ 
+
+
+   
 ---
 ### GAN Model
 The root for the Network model and script is a rather basic Tensorflow tutorial. (https://www.tensorflow.org/tutorials/generative/dcgan)
