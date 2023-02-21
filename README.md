@@ -68,7 +68,8 @@ The root for the Network model and script is a rather basic Tensorflow tutorial.
 
 For each different input format (pixel size of training dataset), a script handles network shapes and training. The script is also able to be used for inference later. During training, the script also continuously generates inference samples to document and monitor progress.
 
-The Generator network starts with a seed aray of 64 values. This (rather arbitrary amount) could be modified but the change would also be made in the OSC-interface and its connected client applications.
+**Generation Seed:** The Generator network starts with a seed array of 64 values. This (rather arbitrary amount) could be modified but the change would also be made in the OSC-interface and its connected client applications.
+Via OSC Message, the seed is conveyed as array of 64 unsigned short ints, in the generator app, the values are scaled to a float range of about [-3.0, 3.0] and fed into the first layer of the generator network.
 
 There are several models for different pixel sizes included. Also an experimental one that works on spectrograms created with a constant-q transformation. 
 
@@ -97,10 +98,10 @@ The OSC messages have to be sent to the server in following format: `/cc<command
 * `/cc/generate_single_wav <float[64] seed>` generates sample with given seed parameters (an array of 64 floats). Returns filename and generation time in `/wav`. Mostly used for testing purposes. 
 * `/cc/generate_single_wav_id <int id> <float[64] seed>` generates sample with given seed parameters (an array of 64 floats). Returns id, filename and generation time in `/wav_id`.
   * Since most client apps use several sample slots to load the generated sample, the ID is used to remember which slot actually requested the generation of the current sample. 
-* `/cc/generate_single_wav_id_img <int id> <float[64] seed>` generates sample with given seed parameters (an array of 64 floats). Additionaly stores the generated spectrum as .png image for debug or visualisation purposes. Returns id, filenames and generation time in `/wav_id_img`.
-* `/cc/generate_random_fade <int steps> <float morph> <float[64] startseed>` generates <steps> samples appended in a single wavefile, starting with <startseed> and continuously randomizing(drunken walk) the startseed in the range of <morph>. Returns filename and generation time in `/wav`. Mostly used for testing purposes.
-* `/cc/generate_fade <int steps> <float[64] startseed> <float[64] endseed>` generates <steps> samples appended in a single wavefile, starting with <startseed> and lerping to <endseed> to calculate seeds in between the steps. Returns id, filename and generation time in `/wav_id`.
-* `/cc/generate_pingpong <int steps> <float[64] startseed> <float[64] endseed>` Same as generate_fade but interpolates from <startseed> to <endseed> back to <starseed> to create a looping mutation of the seed. Returns id, filename and generation time in `/wav_id`.
+* `/cc/generate_single_wav_id_img <int id> <int[64] seed>` generates sample with given seed parameters (an array of 64 ints). Additionaly stores the generated spectrum as .png image for debug or visualisation purposes. Returns id, filenames and generation time in `/wav_id_img`.
+* `/cc/generate_random_fade <int steps> <int morph> <int[64] startseed>` generates <steps> samples appended in a single wavefile, starting with <startseed> and a random endseed (each value of the startseed +/- a random value in the range of <morph>). Returns filename and generation time in `/wav`. Mostly used for testing purposes.
+* `/cc/generate_fade <int steps> <int[64] startseed> <int[64] endseed>` generates <steps> samples appended in a single wavefile, starting with <startseed> and lerping to <endseed> to calculate seeds in between the steps. Returns id, filename and generation time in `/wav_id`.
+* `/cc/generate_pingpong <int steps> <int[64] startseed> <int[64] endseed>` Same as generate_fade but interpolates from <startseed> to <endseed> back to <starseed> to create a looping mutation of the seed. Returns id, filename and generation time in `/wav_id`.
 
 Responses are always prefixed with `/ccret`.
 #### List of currently expectable response commands:
